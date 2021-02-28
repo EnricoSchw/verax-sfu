@@ -8,8 +8,8 @@
 #### Client -> Server
 ```json
 {
-  "type": "connect",
-  "name": "room",
+  "type": "room",
+  "name": "connect",
   "data": {
     "room": "name"
   }
@@ -18,8 +18,8 @@
 #### Server -> Client
 ```json
 {
-  "type": "connect",
-  "name": "roomResponse",
+  "type": "room",
+  "name": "connectResponse",
   "data": {
     "room": "name",
     "id" : "ClientId"
@@ -47,7 +47,7 @@
 ```json
 {
   "type": "conference",
-  "name": "joinResponce",
+  "name": "joinResponse",
   "data": {
     "id": "ClientId",
     "room": "name"
@@ -88,7 +88,7 @@
 ```json
 {
   "type": "conference",
-  "name": "leaveResponce",
+  "name": "leaveResponse",
   "data": {}
 }
 ```
