@@ -110,7 +110,7 @@
 
 ### 3.1 Session Description
 
-#### Client -> Server -> Broadcast Peers
+#### Client -> Server -> Peer
 
 ```json
 {
@@ -118,8 +118,12 @@
   "name": "sdp",
   "data": {
     "room": "name",
-    "sdp": "string",
+    "to": "PeerId",
     "id": "ClientId"
+  },
+  "signal": {
+    "ice": "string",
+    "desc": "string"
   }
 }
 ```

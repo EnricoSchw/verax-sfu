@@ -60,18 +60,14 @@ func (client *Client) startListen() {
 	})
 
 	client.Socket.On("signal", func(event *Event) {
-		//if event.Data["sdp"] != nil {
-		//	event.Data["sdp"] = event.Data["sdp"].(string)
-		//}
-		//if event.Data["candidate"] != nil {
-		//	event.Data["candidate"] = event.Data["candidate"].(string)
-		//}
 		if client.Room != event.Data["room"].(string) {
 			log.Printf("[Error] join confernce %v", event.Data)
 		} else {
-			signal:= NewTypeEvent(client, "signal", event.Name)
+			toUuid := event.Data["to"].(string)
+			signal := NewTypeEvent(client, "signal", event.Name)
+			signal.Data["to"] = toUuid
 			signal.Signal = event.Signal
-			client.Hub.Broadcast <- NewBroadcastMessage(client, signal)
+			client.Hub.Signal <- NewSignalMessage(client, toUuid, signal)
 		}
 	})
 

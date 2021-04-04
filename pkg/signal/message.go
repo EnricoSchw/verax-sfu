@@ -6,11 +6,27 @@ type BroadcastMessage struct {
 	Event *Event
 }
 
+type SignalMessage struct {
+	Uuid   string
+	ToUuid string
+	Room   string
+	Event  *Event
+}
+
 func NewBroadcastMessage(client *Client, event *Event) *BroadcastMessage {
 	return &BroadcastMessage{
 		Uuid:  client.Uid,
 		Room:  client.Room,
 		Event: event,
+	}
+}
+
+func NewSignalMessage(client *Client, toUuid string, event *Event) *SignalMessage {
+	return &SignalMessage{
+		Uuid:   client.Uid,
+		Room:   client.Room,
+		ToUuid: toUuid,
+		Event:  event,
 	}
 }
 

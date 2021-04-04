@@ -3,11 +3,13 @@ package signal
 import "log"
 
 type Hub struct {
-
 	rooms map[string]map[*Client]bool
 
 	// Signaling messages from the clients.
 	Broadcast chan *BroadcastMessage
+
+	// Signaling messages from the clients.
+	Signal chan *SignalMessage
 
 	// Register requests from the clients.
 	Register chan *Client
@@ -19,6 +21,7 @@ type Hub struct {
 func NewHub() *Hub {
 	return &Hub{
 		Broadcast:  make(chan *BroadcastMessage),
+		Signal:     make(chan *SignalMessage),
 		Register:   make(chan *Client),
 		Unregister: make(chan *Client),
 		rooms:      make(map[string]map[*Client]bool),
@@ -65,6 +68,24 @@ func (hub *Hub) run() {
 					}
 				}
 			}
+		case signal := <-hub.Signal:
+			clientList := hub.rooms[signal.Room]
+
+			for client := range clientList {
+				if client.Uid == signal.ToUuid {
+					select {
+					case client.Socket.Out <- signal.Event.Raw():
+					default:
+						log.Printf("Hub close??: %v", client.Uid)
+						close(client.Socket.Out)
+						delete(clientList, client)
+						if len(clientList) == 0 {
+							delete(hub.rooms, signal.Room)
+						}
+					}
+				}
+			}
 		}
 	}
+
 }

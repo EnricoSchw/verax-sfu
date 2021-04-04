@@ -32,6 +32,6 @@ func (server *SignalServer) Start() {
 		log.Printf("New Client connected: %v", client.Uid)
 	})
 	log.Printf("Server listening on port: 8080")
-	log.Fatal(http.ListenAndServe(":8999", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
