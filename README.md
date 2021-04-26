@@ -1,4 +1,4 @@
-# verax-sfu
+# Verax-sfu
 > WebRTC Selective Forwarding Unit
 
 # Events
