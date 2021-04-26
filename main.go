@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	server, err:= signal.NewSignalServer()
+	server, err := signal.NewSignalServer()
 	if err != nil {
 		log.Printf("[ERROR | INIT Server] %v", err)
 	} else {

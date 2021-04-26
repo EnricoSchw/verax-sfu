@@ -28,7 +28,7 @@ func (server *SignalServer) Start() {
 		if err != nil {
 			panic(err)
 		}
-		client:= NewClient(hub, ws, sfu.NewPeer(s))
+		client := NewClient(hub, ws, sfu.NewPeer(s))
 		log.Printf("New Client connected: %v", client.Uid)
 	})
 	log.Printf("Server listening on port: 8080")
