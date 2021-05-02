@@ -67,7 +67,7 @@
   "name": "peerJoin",
   "data": {
     "id": "RemoteClientId",
-    "peerName": "Name of peer",
+    "name": "Name of peer",
     "room": "name"
   }
 }
@@ -125,7 +125,7 @@
 {
   "type": "signal",
   "name": "sdp",
-  "data": {"room": "name", "to": "RemotePeerId", "id": "MyClientId"},
+  "data": {"room": "name", "to": "RemotePeerId", "id": "MyClientId", "name": "MynName"},
   "signal": {
     "desc": {"type": "offer","sdp": "v=0\r\no=- 2057321257886006919..."}
   }
@@ -140,7 +140,7 @@
 {
   "type": "signal",
   "name": "trickle",
-  "data": {"room": "name", "candidate": "string", "id": "ClientId"},
+  "data": {"room": "name", "candidate": "string", "id": "ClientId", "name": "MynName"},
   "signal": {
     "ice": {"candidate": "candidate:1176663647 1 udp...", "sdpMid":"0","sdpMLineIndex":0 }
   }
