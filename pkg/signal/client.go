@@ -43,6 +43,7 @@ func (client *Client) startListen() {
 				log.Printf("[Error] join confernce %v", event.Data)
 			} else {
 				peerJoinEvent := NewTypeEvent(client, "conference", "peerJoin")
+				peerJoinEvent.Data["name"] = event.Data["name"].(string)
 				client.Hub.Broadcast <- NewBroadcastMessage(client, peerJoinEvent)
 				client.send(NewTypeEvent(client, "conference", "joinResponse"))
 			}
@@ -66,6 +67,7 @@ func (client *Client) startListen() {
 			toUuid := event.Data["to"].(string)
 			signal := NewTypeEvent(client, "signal", event.Name)
 			signal.Data["to"] = toUuid
+			signal.Data["name"] = event.Data["name"].(string)
 			signal.Signal = event.Signal
 			client.Hub.Signal <- NewSignalMessage(client, toUuid, signal)
 		}

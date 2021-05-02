@@ -42,6 +42,7 @@
   "name": "join",
   "data": {
     "room": "name",
+    "name": "MyName",
     "id": "MyClientId"
   }
 }
@@ -66,6 +67,7 @@
   "name": "peerJoin",
   "data": {
     "id": "RemoteClientId",
+    "peerName": "Name of peer",
     "room": "name"
   }
 }
