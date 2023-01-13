@@ -1,0 +1,12 @@
+name: Post welcome
+on:
+  pull_request: {}
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    name: Post welcome
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello
